@@ -6,6 +6,7 @@ import psycopg2
 import psycopg2.extras
 import os
 from datetime import datetime
+from contextlib import asynccontextmanager
 
 app = FastAPI(title="Notes API")
 
@@ -28,8 +29,8 @@ def get_db():
     return conn
 
 # Create table on startup
-@app.on_event("startup")
-def startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     conn = get_db()
     cur = conn.cursor()
     cur.execute("""
@@ -43,6 +44,10 @@ def startup():
     conn.commit()
     cur.close()
     conn.close()
+    yield
+
+app = FastAPI(title="Notes API", lifespan=lifespan)
+
 
 # Models
 class NoteCreate(BaseModel):
