@@ -1,0 +1,39 @@
+# Use "compose.yaml" for modern projects
+services:
+  frontend:
+    image: nginx:alpine        # Build from Dockerfile in frontend directory
+    ports:
+      - "3000:80"   
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro # Mount frontend code as read-only
+    depends_on:
+      - web                   # Ensure web starts before frontend
+  web:
+    build: ./backend                 # Build from Dockerfile in current directory
+    ports:
+      - "8000:8000"            # HostPort:ContainerPort
+    environment:
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=notesdb
+      - DB_HOST=db
+    depends_on:
+      db:
+        condition: service_healthy   # Ensure db starts before web
+
+  db:
+    image: postgres:15       # Pull pre-built image
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"] # Check if DB is ready
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD} # Pulls from .env file
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+volumes:
+  db-data:                   # Persistent storage definition
