@@ -95,3 +95,12 @@ resource "aws_nat_gateway" "nat_gw" {
     Name = "${var.project_name}-nat-gw"    
   }  
 }
+
+# Create NAT Gateway in public subnet 2
+resource "aws_nat_gateway" "nat_gw_2" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id = aws_subnet.public_subnet_2.id
+  tags = {  
+    Name = "${var.project_name}-nat-gw-2"    
+  }     
+}
