@@ -4,8 +4,8 @@ resource "aws_security_group" "alb_sg" {
   description = "Security group for ALB"
   vpc_id      = aws_vpc.vpc.id                                                                      
     ingress {
-        from_port   = 80
-        to_port     = 80
+        from_port   = var.alb_port
+        to_port     = var.alb_port
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
@@ -23,8 +23,8 @@ resource "aws_security_group" "ecs_sg_frontend" {
   description = "Security group for ECS tasks - Frontend"
   vpc_id      = aws_vpc.vpc.id
     ingress {
-        from_port   = 3000
-        to_port     = 3000
+        from_port   = var.frontend_port
+        to_port     = var.frontend_port
         protocol    = "tcp"
         security_groups = [aws_security_group.alb_sg.id]
     }
@@ -43,8 +43,8 @@ resource "aws_security_group" "ecs_sg_backend" {
   description = "Security group for ECS tasks - Backend"  
   vpc_id      = aws_vpc.vpc.id
     ingress {
-        from_port   = 8000
-        to_port     = 8000
+        from_port   = var.backend_port
+        to_port     = var.backend_port
         protocol    = "tcp"
         security_groups = [aws_security_group.ecs_sg_frontend.id]
     }
@@ -63,8 +63,8 @@ resource "aws_security_group" "rds_sg" {
   description = "Security group for RDS"
   vpc_id      = aws_vpc.vpc.id
     ingress {
-        from_port   = 5432
-        to_port     = 5432
+        from_port   = var.db_port
+        to_port     = var.db_port
         protocol    = "tcp"         
         security_groups = [aws_security_group.ecs_sg_backend.id]
     }
