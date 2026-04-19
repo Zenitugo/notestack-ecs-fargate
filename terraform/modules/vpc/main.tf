@@ -104,3 +104,16 @@ resource "aws_nat_gateway" "nat_gw_2" {
     Name = "${var.project_name}-nat-gw-2"    
   }     
 }
+
+
+# Create route table for public subnets
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.vpc.id   
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.igw.id
+    }
+    tags = {
+        Name = "${var.project_name}-public-rt"
+    }
+}
