@@ -26,3 +26,13 @@ module "ecr"      {
     source                                    = "../modules/ecr"
     project_name                              = var.project_name
 }
+
+module "rds"     {
+    source                                    = "../modules/rds"
+    private_subnet_3_id                       = module.vpc.private_subnet_3_id
+    private_subnet_4_id                       = module.vpc.private_subnet_4_id
+    rds_sg_id                                 = module.sg.rds_sg_id
+    db_username                               = var.db_username
+    db_password                               = var.db_password
+    project_name                              = var.project_name
+}
