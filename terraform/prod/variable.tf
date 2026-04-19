@@ -11,3 +11,5 @@ variable backend_port {}
 variable db_port {}
 variable subnet_cidr_private_3 {}
 variable subnet_cidr_private_4 {}
+variable db_username {}
+variable db_password {}
