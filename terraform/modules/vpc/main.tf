@@ -81,6 +81,19 @@ resource "aws_subnet" "private_subnet_3" {
     }
 }
 
+# Create Private Subnet 4
+resource "aws_subnet" "private_subnet_4" {
+    vpc_id = aws_vpc.vpc.id     
+    cidr_block = var.subnet_cidr_private_4
+    availability_zone = "data.aws_availability_zones.available.names[3]"  
+    map_public_ip_on_launch = false
+    dns_support = true    
+    dns_hostnames = true
+    tags = {
+        Name = "${var.project_name}-private-subnet-4"
+    }
+}
+
 # Create Internet Gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id  
