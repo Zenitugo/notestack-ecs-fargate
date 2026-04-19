@@ -67,3 +67,12 @@ resource "aws_subnet" "private_subnet_2" {
         Name = "${var.project_name}-private-subnet-2"
     }
 }
+
+
+# Create Internet Gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id  
+    tags = {
+        Name = "${var.project_name}-igw"
+    }
+}    
