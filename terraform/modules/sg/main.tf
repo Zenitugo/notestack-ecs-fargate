@@ -37,3 +37,22 @@ resource "aws_security_group" "ecs_sg_frontend" {
 }
 
 
+# Create Security Group for ECS tasks Backend
+resource "aws_security_group" "ecs_sg_backend" {
+  name        = "${var.project_name}-ecs-sg-backend"
+  description = "Security group for ECS tasks - Backend"  
+  vpc_id      = aws_vpc.vpc.id
+    ingress {
+        from_port   = 8000
+        to_port     = 8000
+        protocol    = "tcp"
+        security_groups = [aws_security_group.ecs_sg_frontend.id]
+    }
+    egress {
+        from_port   = 0
+        to_port     = 0        
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
+
