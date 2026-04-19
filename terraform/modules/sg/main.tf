@@ -2,7 +2,7 @@
 resource "aws_security_group" "alb_sg" {
   name        = "${var.project_name}-alb-sg"
   description = "Security group for ALB"
-  vpc_id      = aws_vpc.vpc.id                                                                      
+  vpc_id      = var.vpc_id                                                                      
     ingress {
         from_port   = var.alb_port
         to_port     = var.alb_port
@@ -21,7 +21,7 @@ resource "aws_security_group" "alb_sg" {
 resource "aws_security_group" "ecs_sg_frontend" {
   name        = "${var.project_name}-ecs-sg-frontend"
   description = "Security group for ECS tasks - Frontend"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc_id
     ingress {
         from_port   = var.frontend_port
         to_port     = var.frontend_port
@@ -41,7 +41,7 @@ resource "aws_security_group" "ecs_sg_frontend" {
 resource "aws_security_group" "ecs_sg_backend" {
   name        = "${var.project_name}-ecs-sg-backend"
   description = "Security group for ECS tasks - Backend"  
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc_id
     ingress {
         from_port   = var.backend_port
         to_port     = var.backend_port
@@ -61,7 +61,7 @@ resource "aws_security_group" "ecs_sg_backend" {
 resource "aws_security_group" "rds_sg" {
   name        = "${var.project_name}-rds-sg"
   description = "Security group for RDS"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc_id
     ingress {
         from_port   = var.db_port
         to_port     = var.db_port
