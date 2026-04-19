@@ -5,3 +5,7 @@ variable subnet_cidr_public_1 {}
 variable subnet_cidr_public_2 {}
 variable subnet_cidr_private_1 {}
 variable subnet_cidr_private_2 {}
+variable alb_port {}
+variable frontend_port {}
+variable backend_port {}
+variable db_port {}
