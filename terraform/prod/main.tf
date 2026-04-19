@@ -6,6 +6,8 @@ modules "vpc"     {
     subnet_cidr_public_2                      = var.subnet_cidr_public_2
     subnet_cidr_private_1                     = var.subnet_cidr_private_1
     subnet_cidr_private_2                     = var.subnet_cidr_private_2
+    subnet_cidr_private_3                     = var.subnet_cidr_private_3
+    subnet_cidr_private_4                     = var.subnet_cidr_private_4
 }
 
 
