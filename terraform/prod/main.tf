@@ -7,3 +7,14 @@ modules "vpc"     {
     subnet_cidr_private_1                     = var.subnet_cidr_private_1
     subnet_cidr_private_2                     = var.subnet_cidr_private_2
 }
+
+
+module "sg"       {
+    source                                    = "../modules/sg"
+    project_name                              = var.project_name
+    vpc_id                                    = module.vpc.vpc_id
+    alb_port                                  = var.alb_port
+    frontend_port                             = var.frontend_port
+    backend_port                              = var.backend_port
+    db_port                                  = var.db_port
+}
