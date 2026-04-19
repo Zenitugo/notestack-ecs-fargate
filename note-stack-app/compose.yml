@@ -1,7 +1,7 @@
 # Use "compose.yaml" for modern projects
 services:
   frontend:
-    image: nginx:alpine        # Build from Dockerfile in frontend directory
+    build: ./frontend                # Build from Dockerfile in frontend directory
     ports:
       - "3000:80"   
     volumes:
@@ -12,12 +12,8 @@ services:
     build: ./backend                 # Build from Dockerfile in current directory
     ports:
       - "8000:8000"            # HostPort:ContainerPort
-    environment:
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=notesdb
-      - DB_HOST=db
+    env_file:
+      - .env                   # Load environment variables from .env file
     depends_on:
       db:
         condition: service_healthy   # Ensure db starts before web
@@ -31,9 +27,7 @@ services:
       retries: 5
     volumes:
       - db-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD} # Pulls from .env file
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_DB=${DB_NAME}
+    env_file:
+      - .env                   # Load DB credentials from .env file
 volumes:
   db-data:                   # Persistent storage definition
