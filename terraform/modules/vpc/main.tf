@@ -117,3 +117,16 @@ resource "aws_route_table" "public_rt" {
         Name = "${var.project_name}-public-rt"
     }
 }
+
+
+# Create route table for private subnet 1
+resource "aws_route_table" "private_rt_1" {
+  vpc_id = aws_vpc.vpc.id   
+    route {
+        cidr_block = " 0.0.0.0/0"
+        nat_gateway_id = aws_nat_gateway.nat_gw.id
+    }
+    tags = {        
+        Name = "${var.project_name}-private-rt"
+    }   
+}
