@@ -18,3 +18,9 @@ module "sg"       {
     backend_port                              = var.backend_port
     db_port                                  = var.db_port
 }
+
+
+module "ecr"      {
+    source                                    = "../modules/ecr"
+    project_name                              = var.project_name
+}
