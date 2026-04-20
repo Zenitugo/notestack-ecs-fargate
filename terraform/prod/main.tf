@@ -36,3 +36,12 @@ module "rds"     {
     db_password                               = var.db_password
     project_name                              = var.project_name
 }
+
+module "secrets" {
+    source                                    = "../modules/secrets"
+    project_name                              = var.project_name
+    db_port                                   = var.db_port
+    db_username                               = var.db_username
+    db_password                               = var.db_password
+    rds_endpoint                              = module.rds.rds_endpoint
+}
