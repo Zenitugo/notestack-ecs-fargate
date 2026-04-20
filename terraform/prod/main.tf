@@ -51,3 +51,12 @@ module "iam"   {
     project_name                              = var.project_name
     secrets_arn                               = module.secrets.secrets_arn
 }
+
+module "alb"   {
+    source                                    = "../modules/alb"
+    project_name                              = var.project_name
+    alb_sg_id                                 = module.sg.alb_sg_id
+    public_subnet_1_id                        = module.vpc.public_subnet_1_id
+    public_subnet_2_id                        = module.vpc.public_subnet_2_id
+    vpc_id                                    = module.vpc.vpc_id
+}
