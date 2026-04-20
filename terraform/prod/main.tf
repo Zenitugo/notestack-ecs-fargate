@@ -60,3 +60,9 @@ module "alb"   {
     public_subnet_2_id                        = module.vpc.public_subnet_2_id
     vpc_id                                    = module.vpc.vpc_id
 }
+
+
+module "cloudwatch"   {
+    source                                    = "../modules/cloudwatch"
+    project_name                              = var.project_name
+}
