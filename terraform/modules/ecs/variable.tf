@@ -1,0 +1,11 @@
+variable project_name {}
+variable frontend_port {}
+variable region {}
+variable frontend_repository_url {} 
+variable backend_repository_url {}
+variable backend_port {}
+variable execution_role_arn {}
+variable frontend_log_group_name {}
+variable backend_log_group_name {}
+variable secrets_arn {}
+variable db_port {}
