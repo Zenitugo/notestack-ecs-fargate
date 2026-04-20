@@ -87,6 +87,10 @@ resource "aws_ecs_task_definition" "backend_task" {
     {
             name  = "DB_NAME"
             value = "${var.project_name}_db"
+    },
+    {
+            name  = "BACKEND_URL"
+            value = var.backend_url
     }
     ]
     }
@@ -140,6 +144,12 @@ resource "aws_ecs_service" "backend_service" {
     subnets         = [var.private_subnet_1_id, var.private_subnet_2_id]
     security_groups = [var.ecs_sg_backend_id]
     assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = var.backend_target_group_arn
+    container_name   = "${var.project_name}-backend-container"
+    container_port   = var.backend_port
   }
 
   depends_on = [aws_ecs_task_definition.backend_task]
