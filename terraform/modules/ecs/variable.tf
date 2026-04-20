@@ -9,3 +9,10 @@ variable frontend_log_group_name {}
 variable backend_log_group_name {}
 variable secrets_arn {}
 variable db_port {}
+variable public_subnet_1_id {}
+variable public_subnet_2_id {}
+variable private_subnet_1_id {}
+variable private_subnet_2_id {}
+variable ecs_sg_frontend_id {}
+variable target_group_arn {}
+variable ecs_sg_backend_id {}
