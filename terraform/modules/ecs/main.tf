@@ -7,7 +7,7 @@ resource "aws_ecs_cluster" "notestack" {
 
 # Register a task definition for the frontend service
 resource "aws_ecs_task_definition" "frontend_task" {
-  family                   = "${var.project_name}-task"
+  family                   = "${var.project_name}-frontend-task"
   container_definitions    = jsonencode([
     {
     name           = "${var.project_name}-frontend-container",
@@ -83,7 +83,11 @@ resource "aws_ecs_task_definition" "backend_task" {
       {
         name  = "DB_PORT"
         value = var.db_port
-      }
+      },
+    {
+            name  = "DB_NAME"
+            value = "${var.project_name}_db"
+    }
     ]
     }
 ])
