@@ -99,3 +99,48 @@ resource "aws_ecs_task_definition" "backend_task" {
 
   depends_on = [aws_ecs_cluster.notestack,]
 }      
+
+
+
+# Create Frontend service
+resource "aws_ecs_service" "frontend_service" {
+  name            = "${var.project_name}-frontend-service"
+  cluster         = aws_ecs_cluster.notestack.id
+  task_definition = aws_ecs_task_definition.frontend_task.arn
+  desired_count   = 2
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets         = [var.public_subnet_1_id, var.public_subnet_2_id]
+    security_groups = [var.ecs_sg_frontend_id]
+    assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = "${var.project_name}-frontend-container"
+    container_port   = var.frontend_port
+  }
+
+
+}
+
+
+
+
+# Create Backend service
+resource "aws_ecs_service" "backend_service" {
+  name            = "${var.project_name}-backend-service"
+  cluster         = aws_ecs_cluster.notestack.id
+  task_definition = aws_ecs_task_definition.backend_task.arn
+  desired_count   = 2
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets         = [var.private_subnet_1_id, var.private_subnet_2_id]
+    security_groups = [var.ecs_sg_backend_id]
+    assign_public_ip = false
+  }
+
+  depends_on = [aws_ecs_task_definition.backend_task]
+}
