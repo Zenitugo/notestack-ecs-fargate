@@ -3,3 +3,5 @@ variable alb_sg_id {}
 variable public_subnet_1_id {}
 variable public_subnet_2_id {}
 variable vpc_id {}
+variable ecs_sg_frontend_id {}
+variable frontend_port {}
