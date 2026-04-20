@@ -59,6 +59,10 @@ module "alb"   {
     public_subnet_1_id                        = module.vpc.public_subnet_1_id
     public_subnet_2_id                        = module.vpc.public_subnet_2_id
     vpc_id                                    = module.vpc.vpc_id
+    private_subnet_1_id                       = module.vpc.private_subnet_1_id
+    private_subnet_2_id                       = module.vpc.private_subnet_2_id
+    ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
+    backend_port                              = var.backend_port
 }
 
 
@@ -85,3 +89,6 @@ module "ecs"   {
     ecs_sg_frontend_id                        = module.sg.ecs_sg_frontend_id
     target_group_arn                          = module.alb.target_group_arn
     ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
+    backend_url                               = module.alb.backend_url
+    backend_target_group_arn                  = module.alb.backend_target_group_arn
+}
