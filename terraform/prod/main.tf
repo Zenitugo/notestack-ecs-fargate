@@ -66,3 +66,22 @@ module "cloudwatch"   {
     source                                    = "../modules/cloudwatch"
     project_name                              = var.project_name
 }
+
+
+module "ecs"   {
+    source                                    = "../modules/ecs"
+    project_name                              = var.project_name
+    frontend_port                             = var.frontend_port
+    backend_port                              = var.backend_port
+    db_port                                   = var.db_port
+    execution_role_arn                        = module.iam.execution_role_arn
+    frontend_log_group_name                   = module.cloudwatch.frontend_log_group_name
+    backend_log_group_name                    = module.cloudwatch.backend_log_group_name
+    secrets_arn                               = module.secrets.secrets_arn
+    public_subnet_1_id                        = module.vpc.public_subnet_1_id
+    public_subnet_2_id                        = module.vpc.public_subnet_2_id
+    private_subnet_1_id                       = module.vpc.private_subnet_1_id
+    private_subnet_2_id                       = module.vpc.private_subnet_2_id
+    ecs_sg_frontend_id                        = module.sg.ecs_sg_frontend_id
+    target_group_arn                          = module.alb.target_group_arn
+    ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
