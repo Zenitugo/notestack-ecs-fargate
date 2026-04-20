@@ -45,3 +45,9 @@ module "secrets" {
     db_password                               = var.db_password
     rds_endpoint                              = module.rds.rds_endpoint
 }
+
+module "iam"   {
+    source                                    = "../modules/iam"
+    project_name                              = var.project_name
+    secrets_arn                               = module.secrets.secrets_arn
+}
