@@ -16,3 +16,5 @@ variable private_subnet_2_id {}
 variable ecs_sg_frontend_id {}
 variable target_group_arn {}
 variable ecs_sg_backend_id {}
+variable backend_url {}
+variable backend_target_group_arn {}
