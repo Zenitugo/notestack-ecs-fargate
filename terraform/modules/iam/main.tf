@@ -50,3 +50,22 @@ resource "aws_iam_policy" "notestack_logging_policy" {
         ]
     })
 }
+
+
+
+# Custom policy to read specific secrets
+resource "aws_iam_role_policy" "ecs_execution_secrets" {
+  name = "${var.project_name}-secrets-policy"
+  role = aws_iam_role.ecs_task_execution_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["secretsmanager:GetSecretValue"]
+        Resource = ["${var.secrets_arn}"]
+      }
+    ]
+  })
+}
