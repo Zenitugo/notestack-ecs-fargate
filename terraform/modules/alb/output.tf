@@ -5,7 +5,7 @@ output "target_group_arn" {
 
 
 # Output backend ALB DNS name
-output "backend_URL" {
+output "backend_url" {
   value = aws_lb.notestack_backend_lb.dns_name
 }
 
