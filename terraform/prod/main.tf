@@ -89,6 +89,12 @@ module "ecs"   {
     ecs_sg_frontend_id                        = module.sg.ecs_sg_frontend_id
     target_group_arn                          = module.alb.target_group_arn
     ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
-    backend_url                               = module.alb.backend_url
     backend_target_group_arn                  = module.alb.backend_target_group_arn
+}
+
+
+module "service_discovery" {
+    source                                    = "../modules/service-discovery"
+    vpc_id                                    = module.vpc.vpc_id
+    project_name                              = var.project_name
 }
