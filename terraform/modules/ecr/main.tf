@@ -1,6 +1,6 @@
 # This resource creates an ECR repository for the frontend application.
 resource "aws_ecr_repository" "frontend_repository" {
-  name = "${var.project_name}-repository"
+  name = "${var.project_name}-frontend-repository"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
