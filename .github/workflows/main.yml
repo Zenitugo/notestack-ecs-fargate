@@ -120,33 +120,3 @@ jobs:
 
 
 
-
-
-
-
-
-
-- name: Configure AWS credentials
-  uses: aws-actions/configure-aws-credentials@v4
-  with:
-    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    aws-region: ${{ secrets.AWS_REGION }}
-
-- name: Login to ECR
-  run: |
-    aws ecr get-login-password --region eu-central-1 | \
-    docker login --username AWS --password-stdin \
-    ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
-
-- name: Build and push backend
-  run: |
-    docker build -t notestack-backend ./backend
-    docker tag notestack-backend:latest $ECR_BACKEND_URI:latest
-    docker push $ECR_BACKEND_URI:latest
-
-- name: Build and push frontend
-  run: |
-    docker build -t notestack-frontend ./frontend
-    docker tag notestack-frontend:latest $ECR_FRONTEND_URI:latest
-    docker push $ECR_FRONTEND_URI:latest
