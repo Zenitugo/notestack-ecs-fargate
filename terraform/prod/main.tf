@@ -90,6 +90,7 @@ module "ecs"   {
     target_group_arn                          = module.alb.target_group_arn
     ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
     backend_target_group_arn                  = module.alb.backend_target_group_arn
+    service_discovery_service_id              = module.service_discovery.service_discovery_service_id
 }
 
 
@@ -97,5 +98,4 @@ module "service_discovery" {
     source                                    = "../modules/service-discovery"
     vpc_id                                    = module.vpc.vpc_id
     project_name                              = var.project_name
-    service_discovery_service_id             = module.service_discovery.service_discovery_service_id
 }
