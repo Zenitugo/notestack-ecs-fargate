@@ -11,7 +11,6 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       DB_USERNAME: ${{ secrets.DB_USERNAME }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      BACKEND_ECR_URI: 
 
     steps:
       # Checkout the repository
@@ -35,11 +34,10 @@ jobs:
       - name: Creating infrastructure with Terraform
         run: |
           echo "Creating infrastructure with Terraform..."
-          cd terraform
-          cd prod
+          cd terraform/prod
           terraform init
           terraform plan -var-file="values.tfvars"
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var-file="values.tfvars"
         env:
           TF_VAR_db_username: ${{ secrets.DB_USERNAME }}
           TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
@@ -48,12 +46,14 @@ jobs:
       - name: Retrieve ECR repository URIs
         id: ecr-uris
         run: |
+          cd terraform/prod
           echo "ECR_BACKEND_URI=$(terraform output -raw backend_repository_url)" >> $GITHUB_ENV
           echo "ECR_FRONTEND_URI=$(terraform output -raw frontend_repository_url)" >> $GITHUB_ENV
 
       # Get ECS Cluster and service information
       - name: Get ECS Cluster and service information
         run: |
+          cd terraform/prod
           echo "CLUSTER_NAME=$(terraform output -raw cluster_name)" >> $GITHUB_ENV
           echo "BACKEND_SERVICE_NAME=$(terraform output -raw backend_service_name)" >> $GITHUB_ENV
           echo "FRONTEND_SERVICE_NAME=$(terraform output -raw frontend_service_name)" >> $GITHUB_ENV
