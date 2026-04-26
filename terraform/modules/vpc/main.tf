@@ -3,6 +3,8 @@
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   instance_tenancy = "default"
+  dns_support = true
+  dns_hostnames = true
 
   tags = {
     Name = "${var.project_name}-vpc"
@@ -16,9 +18,6 @@ resource "aws_subnet" "public_subnet_1" {
   cidr_block = var.subnet_cidr_public_1
   availability_zone = "data.aws_availability_zones.available.names[0]"
   map_public_ip_on_launch = true
-  dns_support = true
-  dns_hostnames = true
-
   tags = {
     Name = "${var.project_name}-public-subnet-1"
   }
@@ -31,8 +30,6 @@ resource "aws_subnet" "public_subnet_2" {
   cidr_block = var.subnet_cidr_public_2
   availability_zone = "data.aws_availability_zones.available.names[1]"
   map_public_ip_on_launch = true
-  dns_support = true
-  dns_hostnames = true
 
   tags = {
     Name = "${var.project_name}-public-subnet-2"
@@ -46,8 +43,6 @@ resource "aws_subnet" "private_subnet_1" {
     cidr_block = var.subnet_cidr_private_1
     availability_zone = "data.aws_availability_zones.available.names[0]"
     map_public_ip_on_launch = false
-    dns_support = true
-    dns_hostnames = true
 
     tags = {
         Name = "${var.project_name}-private-subnet-1"
@@ -61,8 +56,6 @@ resource "aws_subnet" "private_subnet_2" {
     cidr_block = var.subnet_cidr_private_2
     availability_zone = "data.aws_availability_zones.available.names[1]"
     map_public_ip_on_launch = false
-    dns_support = true
-    dns_hostnames = true
     tags = {
         Name = "${var.project_name}-private-subnet-2"
     }
@@ -74,8 +67,6 @@ resource "aws_subnet" "private_subnet_3" {
     cidr_block = var.subnet_cidr_private_3
     availability_zone = "data.aws_availability_zones.available.names[2]"
     map_public_ip_on_launch = false
-    dns_support = true
-    dns_hostnames = true
     tags = {
         Name = "${var.project_name}-private-subnet-3"
     }
@@ -87,8 +78,6 @@ resource "aws_subnet" "private_subnet_4" {
     cidr_block = var.subnet_cidr_private_4
     availability_zone = "data.aws_availability_zones.available.names[3]"  
     map_public_ip_on_launch = false
-    dns_support = true    
-    dns_hostnames = true
     tags = {
         Name = "${var.project_name}-private-subnet-4"
     }
