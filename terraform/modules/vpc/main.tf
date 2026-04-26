@@ -94,17 +94,24 @@ resource "aws_internet_gateway" "igw" {
 
 
 # Create elastic IP for NAT Gateway
-resource "aws_eip" "nat_eip" {
+resource "aws_eip" "nat_eip_1" {
   domain = "vpc"
   tags = {  
-    Name = "${var.project_name}-nat-eip"
+    Name = "${var.project_name}-nat-eip-1"
+  }
+}
+
+resource "aws_eip" "nat_eip_2" {
+  domain = "vpc"
+  tags = {  
+    Name = "${var.project_name}-nat-eip-2"
   }
 }
 
 
 # Create NAT Gateway in public subnet 1
 resource "aws_nat_gateway" "nat_gw" {
-  allocation_id = aws_eip.nat_eip.id
+  allocation_id = aws_eip.nat_eip_1.id
   subnet_id = aws_subnet.public_subnet_1.id
   tags = {
     Name = "${var.project_name}-nat-gw"    
@@ -113,7 +120,7 @@ resource "aws_nat_gateway" "nat_gw" {
 
 # Create NAT Gateway in public subnet 2
 resource "aws_nat_gateway" "nat_gw_2" {
-  allocation_id = aws_eip.nat_eip.id
+  allocation_id = aws_eip.nat_eip_2.id
   subnet_id = aws_subnet.public_subnet_2.id
   tags = {  
     Name = "${var.project_name}-nat-gw-2"    
