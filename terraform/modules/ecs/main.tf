@@ -82,12 +82,12 @@ resource "aws_ecs_task_definition" "backend_task" {
     environment = [
       {
         name  = "DB_PORT"
-        value = var.db_port
+        value = tostring(var.db_port)
       },
-    {
-            name  = "DB_NAME"
-            value = "${var.project_name}_db"
-    }
+      {
+          name  = "DB_NAME"
+          value = "${var.project_name}_db"
+      }
 
     ]
     }
