@@ -150,7 +150,7 @@ resource "aws_ecs_service" "backend_service" {
   }
 
   service_registries {
-    registry_arn = var.service_discovery_service_id
+    registry_arn = var.service_discovery_service_arn
   }
 
   depends_on = [aws_ecs_task_definition.backend_task]
