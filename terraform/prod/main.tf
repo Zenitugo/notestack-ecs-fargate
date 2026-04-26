@@ -91,6 +91,8 @@ module "ecs"   {
     ecs_sg_backend_id                         = module.sg.ecs_sg_backend_id
     backend_target_group_arn                  = module.alb.backend_target_group_arn
     service_discovery_service_id              = module.service_discovery.service_discovery_service_id
+    frontend_repository_url                   = module.ecr.frontend_repository_url
+    backend_repository_url                    = module.ecr.backend_repository_url
 }
 
 
