@@ -3,8 +3,8 @@
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   instance_tenancy = "default"
-  dns_support = true
-  dns_hostnames = true
+  enable_dns_support = true
+  enable_dns_hostnames = true
 
   tags = {
     Name = "${var.project_name}-vpc"
@@ -95,7 +95,7 @@ resource "aws_internet_gateway" "igw" {
 
 # Create elastic IP for NAT Gateway
 resource "aws_eip" "nat_eip" {
-  vpc = true
+  domain = "vpc"
   tags = {  
     Name = "${var.project_name}-nat-eip"
   }
