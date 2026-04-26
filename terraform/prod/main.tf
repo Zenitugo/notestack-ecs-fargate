@@ -44,6 +44,8 @@ module "secrets" {
     db_username                               = var.db_username
     db_password                               = var.db_password
     rds_endpoint                              = module.rds.rds_endpoint
+
+    depends_on = [module.rds]
 }
 
 module "iam"   {
