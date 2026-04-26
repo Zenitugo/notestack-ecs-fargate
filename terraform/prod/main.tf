@@ -93,6 +93,7 @@ module "ecs"   {
     service_discovery_service_id              = module.service_discovery.service_discovery_service_id
     frontend_repository_url                   = module.ecr.frontend_repository_url
     backend_repository_url                    = module.ecr.backend_repository_url
+    region                                    = var.region
 }
 
 
