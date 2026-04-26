@@ -17,4 +17,4 @@ variable ecs_sg_frontend_id {}
 variable target_group_arn {}
 variable ecs_sg_backend_id {}
 variable backend_target_group_arn {}
-variable service_discovery_service_id {}
+variable service_discovery_service_arn {}
