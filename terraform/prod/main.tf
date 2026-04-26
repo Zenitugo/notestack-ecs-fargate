@@ -97,4 +97,5 @@ module "service_discovery" {
     source                                    = "../modules/service-discovery"
     vpc_id                                    = module.vpc.vpc_id
     project_name                              = var.project_name
+    service_discovery_service_id             = module.service_discovery.service_discovery_service_id
 }
