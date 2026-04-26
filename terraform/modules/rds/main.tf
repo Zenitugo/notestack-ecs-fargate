@@ -8,7 +8,7 @@ resource "aws_db_instance" "notestack_rds" {
   allocated_storage        = 20
   storage_type             = "gp2"
   engine                   = "postgres"
-  engine_version           = "15.4"
+  engine_version           = "15.7"
   instance_class           = "db.t3.micro"
   db_name                  = "${var.project_name}_db"
   username                 = var.db_username
