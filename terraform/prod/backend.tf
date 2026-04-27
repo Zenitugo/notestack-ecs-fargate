@@ -5,5 +5,6 @@ terraform {
         dynamodb_table = "ugochi-notestack-lock"
         region = "eu-central-1"
         encrypt = true
+        use_lockfile = true
     }
 }
