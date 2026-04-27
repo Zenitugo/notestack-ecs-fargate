@@ -50,7 +50,7 @@ Part 2 [Fargate + AWS CLI](https://dhebbydavid.hashnode.dev/deploying-your-conta
 - GitHub Actions
 
 ## 📂 Repo Structure
-
+```
 notestack-ecs-fargate/
 ├── README.md
 ├── note-stack-app
@@ -72,6 +72,7 @@ notestack-ecs-fargate/
         ├── provider.tf
         ├── values.tfvars
         └── variable.tf
+```
 
 ## ⚙️ Setup Instructions
 
