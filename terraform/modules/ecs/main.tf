@@ -143,12 +143,6 @@ resource "aws_ecs_service" "backend_service" {
     assign_public_ip = false
   }
 
-  load_balancer {
-    target_group_arn = var.backend_target_group_arn
-    container_name   = "${var.project_name}-backend-container"
-    container_port   = var.backend_port
-  }
-
   service_registries {
     registry_arn = var.service_discovery_service_arn
   }
