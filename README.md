@@ -26,7 +26,8 @@ Part 2 [Fargate + AWS CLI](https://dhebbydavid.hashnode.dev/deploying-your-conta
 
 
 ## Architectural Design
-![Uploading Blank diagram (2).png…]()
+<img width="2620" height="1994" alt="three tier design" src="https://github.com/user-attachments/assets/2f2935d7-6ee8-4a2c-8379-279701262fe9" />
+
 
 
 
