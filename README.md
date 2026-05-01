@@ -26,6 +26,7 @@ Part 2 [Fargate + AWS CLI](https://dhebbydavid.hashnode.dev/deploying-your-conta
 
 
 ## Architectural Design
+![Uploading Blank diagram (2).png…]()
 
 
 
