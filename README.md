@@ -24,6 +24,16 @@ Part 1 [EC2 launch type](https://dhebbydavid.hashnode.dev/deploying-your-first-c
 
 Part 2 [Fargate + AWS CLI](https://dhebbydavid.hashnode.dev/deploying-your-containerized-application-on-aws-ecs-part-2-fargate-launch-type)
 
+
+## Architectural Design
+
+
+
+
+
+
+
+
 ## 🚀 Features
 - 3-tier architecture: Nginx frontend, FastAPI backend, RDS PostgreSQL.
 - Deployed on AWS ECS Fargate.
