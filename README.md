@@ -35,6 +35,7 @@ Part 2 [Fargate + AWS CLI](https://dhebbydavid.hashnode.dev/deploying-your-conta
 
 
 
+
 ## 🚀 Features
 - 3-tier architecture: Nginx frontend, FastAPI backend, RDS PostgreSQL.
 - Deployed on AWS ECS Fargate.
