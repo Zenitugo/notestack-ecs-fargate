@@ -1,5 +1,5 @@
 resource "aws_secretsmanager_secret" "notestack_secret" {
-  name = "${var.project_name}-new-secret"
+  name = "${var.project_name}-new-secret-2"
 }
 
 resource "aws_secretsmanager_secret_version" "notestack_secret_version" {
