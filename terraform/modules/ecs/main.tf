@@ -112,9 +112,9 @@ resource "aws_ecs_service" "frontend_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [var.public_subnet_1_id, var.public_subnet_2_id]
+    subnets         = [var.private_subnet_1_id, var.private_subnet_2_id]
     security_groups = [var.ecs_sg_frontend_id]
-    assign_public_ip = true
+    assign_public_ip = false
   }
 
   load_balancer {
