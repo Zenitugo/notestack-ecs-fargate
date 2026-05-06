@@ -84,8 +84,6 @@ module "ecs"   {
     frontend_log_group_name                   = module.cloudwatch.frontend_log_group_name
     backend_log_group_name                    = module.cloudwatch.backend_log_group_name
     secrets_arn                               = module.secrets.secrets_arn
-    public_subnet_1_id                        = module.vpc.public_subnet_1_id
-    public_subnet_2_id                        = module.vpc.public_subnet_2_id
     private_subnet_1_id                       = module.vpc.private_subnet_1_id
     private_subnet_2_id                       = module.vpc.private_subnet_2_id
     ecs_sg_frontend_id                        = module.sg.ecs_sg_frontend_id
