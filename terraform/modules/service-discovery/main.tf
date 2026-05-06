@@ -17,4 +17,7 @@ resource "aws_service_discovery_service" "backend" {
       ttl  = 10
         }       
   }
+  health_check_custom_config {
+    failure_threshold = 1   # Mark as unhealthy after 1 failure
+  }
 }
